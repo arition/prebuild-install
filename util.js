@@ -40,7 +40,7 @@ function urlTemplate (opts) {
     return opts.download
   }
 
-  var packageName = '{name}-v{version}-{runtime}-v{abi}-{platform}{libc}-{arch}.tar.gz'
+  var packageName = '{name}-v{version}-{runtime}-v{abi}-{platform}{libc}-{arch}.tar.xz'
   var hostMirrorUrl = getHostMirrorUrl(opts)
 
   if (hostMirrorUrl) {

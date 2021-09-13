@@ -3,7 +3,7 @@ var fs = require('fs')
 var get = require('simple-get')
 var pump = require('pump')
 var tfs = require('tar-fs')
-var zlib = require('zlib')
+var lzma = require("lzma-native")
 var util = require('./util')
 var error = require('./error')
 var proxy = require('./proxy')
@@ -96,7 +96,7 @@ function downloadPrebuild (downloadUrl, opts, cb) {
     }
     var extract = tfs.extract(opts.path, options).on('entry', updateName)
 
-    pump(fs.createReadStream(cachedPrebuild), zlib.createGunzip(), extract,
+    pump(fs.createReadStream(cachedPrebuild), lzma.createDecompressor(), extract,
       function (err) {
         if (err) return cb(err)
 
