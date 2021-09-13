@@ -96,7 +96,7 @@ function downloadPrebuild (downloadUrl, opts, cb) {
     }
     var extract = tfs.extract(opts.path, options).on('entry', updateName)
 
-    pump(fs.createReadStream(cachedPrebuild), lzma.createDecompressor(), extract,
+    pump(fs.createReadStream(cachedPrebuild), lzma.createDecompressor({ threads: 0 }), extract,
       function (err) {
         if (err) return cb(err)
 
